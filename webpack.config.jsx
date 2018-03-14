@@ -4,8 +4,8 @@ var clientPort = require('./etc/config.json').clientPort;
 module.exports = {
     entry: "./client/index.js",
     output: {
-        path: path.resolve(__dirname, './public'),
-        publicPath: '/public/',
+        path: path.resolve(__dirname, './build'),
+        publicPath: '/build',
         filename: 'bundle.js'
     },
     module: {
@@ -37,6 +37,9 @@ module.exports = {
         ]
     },
     devServer: {
-        port: clientPort
-    }
+        port: clientPort,
+        historyApiFallback: true,
+        contentBase: './',
+        hot: true
+      },
 }

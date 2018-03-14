@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Phone from '../../components/Phone';
 
-import { fetchPhones } from '../../actions';
+import { fetchPhones, loadMorePhones } from '../../actions';
 
 import { getPhones } from '../../reducers/phone';
 
@@ -20,13 +20,21 @@ class ContainerPhones extends React.Component {
     }
 
     render (){
-        const {phones} = this.props;
+        const {phones, onLoadMorePhones} = this.props;
 
         console.log({phones})
 
         return  <div>
                     <div className='books row'>
                         {phones && phones.map((phone,index) => <Phone key={index} phone shortDescription={this.getShortDescription(phone)} /> )}
+                    </div>
+                    <div className="row">
+                        <button
+                            onClick={onLoadMorePhones}
+                            className="pull-right btn btn-primary"
+                        >
+                            Load More
+                        </button>
                     </div>
                 </div>
 
@@ -42,6 +50,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onFetchPhones: () =>  dispatch(fetchPhones()),
+        onLoadMorePhones: () =>  dispatch(loadMorePhones()),
     }
 }
 

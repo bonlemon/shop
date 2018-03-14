@@ -10,16 +10,22 @@ const initialState = Map({
 function reducer(state = initialState, action) {
     switch (action.type){
 
-        //** CREATE */
         case ACTION_TYPES.FETCH_PHONES_REQUEST: 
             return state.set('error', null)
-
         case ACTION_TYPES.FETCH_PHONES_SUCCESS:
             return state.set('phones', List(action.payload.phones))
-
         case ACTION_TYPES.FETCH_PHONES_FAILURE: 
             return state.set('error', action.error)
 
+        case ACTION_TYPES.LOAD_MORE_PHONES_REQUEST: 
+            return state.set('error', null)
+        case ACTION_TYPES.LOAD_MORE_PHONES_SUCCESS:
+           return state.set('phones', List(action.payload.phones))
+        case ACTION_TYPES.LOAD_MORE_PHONES_FAILURE: 
+            return state.set('error', action.error)
+
+        default:
+            return state
     }
     return state;
 }
@@ -35,4 +41,8 @@ export function getPhones(state) {
 
 export function getPhoneById (state, id){ 
     return getPhones(state).filter(phone => phone.id == id)
+};
+
+export function getRenderedPhonesLength (state,){ 
+    return getPhones(state).length
 };

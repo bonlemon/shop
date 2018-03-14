@@ -3,14 +3,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-// redux middleware
+// Redux middleware
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 
-// Component
-import App from './components/App';
+// Routes
+import RootRouter from './routes/root';
 
 // reducer
 import reducer from './reducers'
@@ -30,11 +29,7 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
-            <Switch>
-                <Route exact path='' component={App} />
-            </Switch>
-        </BrowserRouter>
+        <RootRouter/>
     </Provider>,
     document.getElementById('app')
 )
