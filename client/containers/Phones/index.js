@@ -1,3 +1,3 @@
-import Phones from './Phones.jsx';
+import ContainerPhones from './Phones.jsx';
 
-export default Phones;
+export default ContainerPhones;

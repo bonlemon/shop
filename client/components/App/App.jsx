@@ -1,7 +1,6 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 
-import { ContainerPhones } from '../containers/Phones';
+import ContainerPhones from '../../containers/Phones';
 
 import './App.scss';
 
@@ -16,7 +15,7 @@ class App extends React.Component {
                             Sidebar
                         </div>
                         <div className="col-md-9">
-                            <Route path='/' component={ContainerPhones} />
+                            <ContainerPhones />
                         </div>
                     </div>
                 </div>
