@@ -52,6 +52,22 @@ class ContainerPhone extends React.Component {
             battery,
             memory
         } = this.props.phone;
+
+        return [cpu,
+                camera,
+                size,
+                weight,
+                display,
+                battery,
+                memory].map((value, key) => <div className='column' key={key}>
+                        <div className='ab-details-title'>
+                            <p>{key}</p>
+                        </div>
+                        <div className='ab-details-info'>
+                            {value}
+                        </div>
+                    </div>
+        )
       }
 
     renderSidebar() {
