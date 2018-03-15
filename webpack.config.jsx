@@ -1,3 +1,5 @@
+import HtmlWebpackPlugin from "html-webpack-plugin";
+
 var path = require('path');
 var clientPort = require('./etc/config.json').clientPort;
 
@@ -51,4 +53,10 @@ module.exports = {
         historyApiFallback: true,
         hot: true
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: 'index.html',
+            // favicon: 'production/favicon.ico'
+        })
+    ]
 }

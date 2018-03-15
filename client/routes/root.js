@@ -10,7 +10,7 @@ import ContainerPhone from './../containers/Phone';
 const RootRouter = () => (
     <BrowserRouter>
         <Switch>
-            <Route path='/phones/:id' component={(ContainerPhone)} />
+            <Route path='/phones/:id' component={ContainerPhone} />
             <Route exact path='/' component={App} />
         </Switch>
     </BrowserRouter>

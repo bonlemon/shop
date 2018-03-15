@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Phone from '../../components/Phone';
 
-import { fetchPhones } from '../../actions';
+import { fetchPhoneById } from '../../actions';
 
 
 
@@ -31,7 +31,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onFetchPhoneById: () =>  dispatch(fetchPhoneById(id)),
+        onFetchPhoneById: (id) =>  dispatch(fetchPhoneById(id)),
     }
 }
 
