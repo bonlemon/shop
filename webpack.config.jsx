@@ -4,9 +4,19 @@ var clientPort = require('./etc/config.json').clientPort;
 module.exports = {
     entry: "./client/index.js",
     output: {
-        path: path.resolve(__dirname, './build'),
-        publicPath: '/build',
+        path: path.resolve(__dirname, './production'),
+        publicPath: '/',
         filename: 'bundle.js'
+    },
+    resolve: {
+        alias: {
+            actions: path.resolve(__dirname, './client/actions'),
+            components: path.resolve(__dirname, './client/components'),
+            constants: path.resolve(__dirname, './client/constants'),
+            containers: path.resolve(__dirname, './client/containers'),
+            reducers: path.resolve(__dirname, './client/reducers'),
+        },
+        extensions: ['.js', '.jsx', '.json', '.scss']
     },
     module: {
         rules: [
@@ -39,7 +49,6 @@ module.exports = {
     devServer: {
         port: clientPort,
         historyApiFallback: true,
-        contentBase: './',
         hot: true
-      },
+    },
 }
