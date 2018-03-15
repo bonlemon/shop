@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import Phone from '../../components/Phone';
 
@@ -22,11 +23,11 @@ class ContainerPhones extends React.Component {
     render (){
         const {phones, onLoadMorePhones} = this.props;
 
-        console.log({phones})
-
         return  <div>
                     <div className='books row'>
-                        {phones && phones.map((phone,index) => <Phone key={index} phone shortDescription={this.getShortDescription(phone)} /> )}
+                        {phones && phones.map(
+                            (phone, index) => <Phone key={index} phone={phone} shortDescription={this.getShortDescription(phone)} /> 
+                        )}
                     </div>
                     <div className="row">
                         <button
@@ -55,4 +56,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContainerPhones);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ContainerPhones));

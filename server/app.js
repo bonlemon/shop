@@ -17,6 +17,8 @@ app.use(bodyParser.json());
 // it needs for cors
 app.use(cors({origin: '*'}));
 
+app.use(express.static('../production'));
+
 // app.use(function(req, res, next) {
 //     res.header("Access-Control-Allow-Origin", "*");
 //     res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST');
