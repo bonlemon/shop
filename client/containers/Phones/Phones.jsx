@@ -12,6 +12,12 @@ import { getPhones } from '../../reducers/phone';
 
 class ContainerPhones extends React.Component {
 
+    handlerAddPhoneToBasket = (id) => {
+        const { onAddPhoneToBasket } = this.props;
+
+        onAddPhoneToBasket(id);
+    }
+
     componentDidMount(){
         Promise.resolve().then(() => this.props.onFetchPhones());
     }
@@ -26,7 +32,12 @@ class ContainerPhones extends React.Component {
         return  <div>
                     <div className='books row'>
                         {phones && phones.map(
-                            (phone, index) => <Phone key={index} phone={phone} shortDescription={this.getShortDescription(phone)} /> 
+                            (phone, index) => <Phone
+                                                key={index}
+                                                phone={phone}
+                                                shortDescription={this.getShortDescription(phone)}
+                                                addPhoneToBasket={this.handlerAddPhoneToBasket}
+                                                /> 
                         )}
                     </div>
                     <div className="row">
@@ -52,6 +63,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onFetchPhones: () =>  dispatch(fetchPhones()),
         onLoadMorePhones: () =>  dispatch(loadMorePhones()),
+        onAddPhoneToBasket: () =>  dispatch(addPhoneToBasket()),
     }
 }
 

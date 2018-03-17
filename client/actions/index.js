@@ -192,3 +192,21 @@ export function fetchPhoneById(id) {
             })
     }
 };
+
+export function addPhoneToBasket(id){
+    return (dispatch) => dispatch({
+            type: ACTION_TYPES.ADD_PHONE_TO_BASKET,
+            payload: {
+                id
+            }
+        });
+}
+
+export function removePhoneToBasket(id){
+    return (dispatch) => dispatch({
+            type: ACTION_TYPES.REMOVE_PHONE_TO_BASKET,
+            payload: {
+                id
+            }
+        });
+}

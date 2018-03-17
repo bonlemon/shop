@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ContainerPhones from '../../containers/Phones';
+import Sidebar from '../Sidebar';
 
 import './App.scss';
 
@@ -12,7 +13,7 @@ class App extends React.Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-3">
-                            Sidebar
+                            <Sidebar />
                         </div>
                         <div className="col-md-9">
                             <ContainerPhones />

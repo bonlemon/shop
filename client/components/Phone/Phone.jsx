@@ -6,8 +6,19 @@ import './Phone.scss';
 
 class Phone extends React.Component {
 
+    handlerAddPhoneTobasket()  {
+        const { phone, addPhoneToBasket } = this.props;
+
+        addPhoneToBasket(phone.id)
+    }
+
     render() {
-        const { phone, shortDescription } = this.props;
+        const { 
+            phone,
+            shortDescription,
+            handlerBuyNow,
+            
+        } = this.props;
 
         return  <div className='col-sm-4 col-lg-4 col-md-4 book-list' key={phone.id}>
                     <div className='thumbnail'>
@@ -27,6 +38,7 @@ class Phone extends React.Component {
                             <p className='itemButton'>
                                 <button
                                     className='btn btn-primary'
+                                    onClick={this.handlerAddPhoneTobasket}
                                 >
                                     Buy Now!
                             </button>
