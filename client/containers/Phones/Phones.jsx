@@ -24,7 +24,7 @@ class ContainerPhones extends React.Component {
         } = this.props;
         Promise.resolve()
             .then(() => onFetchPhones())
-            .then(() => onFetchPhones());
+            .then(() => onFetchCategories());
     }
 
     getShortDescription(phone){

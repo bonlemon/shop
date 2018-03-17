@@ -12,7 +12,6 @@ import {
 class ContainerBasketCart extends React.Component {
 
     getTotalPrice(phones) {
-        console.log(phones)
         return phones && phones.length ? phones.reduce((sum, phone) => sum + phone) : 0
     }
 

@@ -98,6 +98,28 @@ const phonesList = [
     }
 ]
 
+const categoriesList = [
+  {
+    id: "1",
+    name: 'Apple'
+  },
+  {
+    id: "2",
+    name: 'Samsung'
+  },
+  {
+    id: "3",
+    name: 'Htc'
+  },
+  {
+    id: "4",
+    name: 'Lenovo'
+  },
+  {
+    id: "5",
+    name: 'Microsoft'
+  }
+]
 
 
 export function loadMorePhones() {
@@ -141,24 +163,24 @@ export function loadMorePhones() {
     }
 };
 
-export function fetchPhones() {
+export function fetchCategories() {
     return (dispatch) => {
         dispatch({
-            type: ACTION_TYPES.FETCH_PHONES_REQUEST
+            type: ACTION_TYPES.FETCH_CATEGORIES_REQUEST
         });
 
         Promise.resolve()
             .then(() => {
                 dispatch({
-                    type: ACTION_TYPES.FETCH_PHONES_SUCCESS,
+                    type: ACTION_TYPES.FETCH_CATEGORIES_SUCCESS,
                     payload: {
-                        phones: phonesList
+                        categories: categoriesList
                     }
                 })
             })
             .catch(err => {
                 dispatch({
-                    type: ACTION_TYPES.FETCH_PHONES_FAILURE,
+                    type: ACTION_TYPES.FETCH_CATEGORIES_FAILURE,
                     error: err
                 })
             })
