@@ -165,6 +165,30 @@ export function fetchPhones() {
     }
 };
 
+export function fetchPhones() {
+    return (dispatch) => {
+        dispatch({
+            type: ACTION_TYPES.FETCH_PHONES_REQUEST
+        });
+
+        Promise.resolve()
+            .then(() => {
+                dispatch({
+                    type: ACTION_TYPES.FETCH_PHONES_SUCCESS,
+                    payload: {
+                        phones: phonesList
+                    }
+                })
+            })
+            .catch(err => {
+                dispatch({
+                    type: ACTION_TYPES.FETCH_PHONES_FAILURE,
+                    error: err
+                })
+            })
+    }
+};
+
 
 export function fetchPhoneById(id) {
     return (dispatch) => {

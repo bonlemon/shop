@@ -6,6 +6,7 @@ import Phone from '../../components/Phone';
 
 import { 
     fetchPhones,
+    fetchCategories,
     loadMorePhones,
     addPhoneToBasket
 } from '../../actions';
@@ -17,8 +18,13 @@ import { getPhones } from '../../reducers/phone';
 class ContainerPhones extends React.Component {
 
     componentDidMount(){
+        const {
+            onFetchPhones,
+            onFetchCategories,
+        } = this.props;
         Promise.resolve()
-            .then(() => this.props.onFetchPhones());
+            .then(() => onFetchPhones())
+            .then(() => onFetchPhones());
     }
 
     getShortDescription(phone){
@@ -61,6 +67,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onFetchPhones: () =>  dispatch(fetchPhones()),
+        onFetchCategories: () =>  dispatch(fetchCategories()),
         onLoadMorePhones: () =>  dispatch(loadMorePhones()),
         onAddPhoneToBasket: (id) =>  dispatch(addPhoneToBasket(id)),
     }

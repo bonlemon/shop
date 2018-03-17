@@ -1,7 +1,8 @@
 import React from 'react';
 
-import ContainerPhones from '../../containers/Phones';
 import Sidebar from '../Sidebar';
+
+import AppRouter from '../../routes/app';
 
 import './App.scss';
 
@@ -16,7 +17,7 @@ class App extends React.Component {
                             <Sidebar />
                         </div>
                         <div className="col-md-9">
-                            <ContainerPhones />
+                            <AppRouter />
                         </div>
                     </div>
                 </div>
