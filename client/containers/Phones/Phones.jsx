@@ -4,7 +4,11 @@ import { withRouter } from 'react-router-dom';
 
 import Phone from '../../components/Phone';
 
-import { fetchPhones, loadMorePhones } from '../../actions';
+import { 
+    fetchPhones,
+    loadMorePhones,
+    addPhoneToBasket
+} from '../../actions';
 
 import { getPhones } from '../../reducers/phone';
 
@@ -12,14 +16,9 @@ import { getPhones } from '../../reducers/phone';
 
 class ContainerPhones extends React.Component {
 
-    handlerAddPhoneToBasket = (id) => {
-        const { onAddPhoneToBasket } = this.props;
-
-        onAddPhoneToBasket(id);
-    }
-
     componentDidMount(){
-        Promise.resolve().then(() => this.props.onFetchPhones());
+        Promise.resolve()
+            .then(() => this.props.onFetchPhones());
     }
 
     getShortDescription(phone){
@@ -27,7 +26,7 @@ class ContainerPhones extends React.Component {
     }
 
     render (){
-        const {phones, onLoadMorePhones} = this.props;
+        const {phones, onLoadMorePhones, onAddPhoneToBasket} = this.props;
 
         return  <div>
                     <div className='books row'>
@@ -36,7 +35,7 @@ class ContainerPhones extends React.Component {
                                                 key={index}
                                                 phone={phone}
                                                 shortDescription={this.getShortDescription(phone)}
-                                                addPhoneToBasket={this.handlerAddPhoneToBasket}
+                                                addPhoneToBasket={onAddPhoneToBasket}
                                                 /> 
                         )}
                     </div>
@@ -63,7 +62,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onFetchPhones: () =>  dispatch(fetchPhones()),
         onLoadMorePhones: () =>  dispatch(loadMorePhones()),
-        onAddPhoneToBasket: () =>  dispatch(addPhoneToBasket()),
+        onAddPhoneToBasket: (id) =>  dispatch(addPhoneToBasket(id)),
     }
 }
 

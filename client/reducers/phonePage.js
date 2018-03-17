@@ -7,7 +7,7 @@ const initialState = Map({
 })
 
 
-function reducer(state = initialState, {type, payload}) {
+export default function reducer(state = initialState, {type, payload}) {
     switch (type){
 
         case ACTION_TYPES.FETCH_PHONE_BY_ID_SUCCESS:
@@ -18,6 +18,3 @@ function reducer(state = initialState, {type, payload}) {
     }
     return state;
 }
-
-export default reducer;
-

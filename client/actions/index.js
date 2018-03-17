@@ -210,3 +210,12 @@ export function removePhoneToBasket(id){
             }
         });
 }
+
+export function searchPhone(text){
+    return (dispatch) => dispatch({
+            type: ACTION_TYPES.SEARCH_PHONE,
+            payload: {
+                text
+            }
+        });
+}

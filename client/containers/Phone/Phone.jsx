@@ -1,9 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import Phone from '../../components/Phone';
+import Sidebar from '../../components/Sidebar';
+import ContainerBasketCart from '../BasketCart';
 
-import { fetchPhoneById } from '../../actions';
+import {
+    fetchPhoneById,
+    addPhoneToBasket
+} from '../../actions';
 import { getPhoneById } from '../../reducers/phone';
 
 
@@ -42,7 +48,7 @@ class ContainerPhone extends React.Component {
         )
     }
 
-    renderFields () {
+    renderFields() {
         const {
             cpu,
             camera,
@@ -54,25 +60,45 @@ class ContainerPhone extends React.Component {
         } = this.props.phone;
 
         return [cpu,
-                camera,
-                size,
-                weight,
-                display,
-                battery,
-                memory].map((value, key) => <div className='column' key={key}>
-                        <div className='ab-details-title'>
-                            <p>{key}</p>
-                        </div>
-                        <div className='ab-details-info'>
-                            {value}
-                        </div>
-                    </div>
-        )
-      }
+            camera,
+            size,
+            weight,
+            display,
+            battery,
+            memory].map((value, key) => <div className='column' key={key}>
+                <div className='ab-details-title'>
+                    <p>{key}</p>
+                </div>
+                <div className='ab-details-info'>
+                    {value}
+                </div>
+            </div>
+            )
+    }
 
     renderSidebar() {
+        const {
+            phone,
+            onAddPhoneToBasket
+        } = this.props
+
         return (
-            <div>Sidebar</div>
+            <div>
+                <p className='lead'>Quick shop</p>
+                <ContainerBasketCart />
+                <div className='form-group'>
+                    <h1>{phone.name}</h1>
+                    <h2>${phone.price}</h2>
+                </div>
+                <Link to='/' className='btn btn-info btn-block'>Back to store</Link>
+                <button
+                    type='button'
+                    className='btn btn-success btn-block'
+                    onClick={() => onAddPhoneToBasket(phone.id)}
+                >
+                    Add to cart
+                </button>
+            </div>
         )
     }
 
@@ -82,22 +108,19 @@ class ContainerPhone extends React.Component {
         return <div className="view-container">
             <div className="container">
                 <div className="row">
-                    <div className="col-md-9">
-                        {phone && this.renderContent()}
-                    </div>
                     <div className="col md-3">
                         {phone && this.renderSidebar()}
+                    </div>
+                    <div className="col-md-9">
+                        {phone && this.renderContent()}
                     </div>
                 </div>
             </div>
         </div>
-
     }
 }
 
 const mapStateToProps = (state) => {
-    console.log('state.phonePage.id', state.phonePage.get("id"))
-
     return {
         phone: getPhoneById(state, state.phonePage.get("id"))
     }
@@ -106,6 +129,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onFetchPhoneById: (id) => dispatch(fetchPhoneById(id)),
+        onAddPhoneToBasket: (id) =>  dispatch(addPhoneToBasket(id)),
     }
 }
 

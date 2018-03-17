@@ -7,7 +7,7 @@ const initialState = Map({
 })
 
 
-function reducer(state = initialState, action) {
+export default function reducer(state = initialState, action) {
     switch (action.type){
 
         case ACTION_TYPES.FETCH_PHONES_REQUEST: 
@@ -30,17 +30,24 @@ function reducer(state = initialState, action) {
     return state;
 }
 
-export default reducer;
 
 
+function filetByName(text, phones){
+    return phones.filter(phone => phone.name.includes(text))
+}
 
 // Selectors
 export function getPhones(state) {
-    return state.phone.get('phones') ? state.phone.get('phones').toJS() : []
+    return state.phone.get('phones') ?
+        filetByName(
+            state.phonesPage.get('search'),
+            state.phone.get('phones')
+            .toJS()
+        ) : []
 };
 
 export function getPhoneById (state, id){ 
-    return getPhones(state).filter(phone => phone.id == id)
+    return getPhones(state).filter(phone => phone.id == id)[0]
 };
 
 export function getRenderedPhonesLength (state,){ 

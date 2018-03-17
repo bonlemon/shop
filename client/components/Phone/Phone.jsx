@@ -1,23 +1,23 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './Phone.scss';
 
 
 class Phone extends React.Component {
 
-    handlerAddPhoneTobasket()  {
+    handlerAddPhoneToBasket = () => {
         const { phone, addPhoneToBasket } = this.props;
 
         addPhoneToBasket(phone.id)
     }
 
     render() {
-        const { 
+        const {
             phone,
             shortDescription,
             handlerBuyNow,
-            
+
         } = this.props;
 
         return  <div className='col-sm-4 col-lg-4 col-md-4 book-list' key={phone.id}>
@@ -38,16 +38,16 @@ class Phone extends React.Component {
                             <p className='itemButton'>
                                 <button
                                     className='btn btn-primary'
-                                    onClick={this.handlerAddPhoneTobasket}
+                                    onClick={this.handlerAddPhoneToBasket}
                                 >
                                     Buy Now!
-                            </button>
+                                    </button>
                                 <Link
                                     to={`/phones/${phone.id}`}
                                     className='btn btn-default'
                                 >
                                     More info
-                            </Link>
+                                    </Link>
                             </p>
                         </div>
                     </div>
