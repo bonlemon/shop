@@ -22,4 +22,4 @@ export default function reducer(state = initialState, {type, payload}) {
 }
 
 
-export const getCategories = (state) => state.categories && state.categories.toJS();
+export const getCategories = (state) => state.category && state.category.toJS();

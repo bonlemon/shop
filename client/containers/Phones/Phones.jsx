@@ -17,14 +17,14 @@ import { getPhones } from '../../reducers/phone';
 
 class ContainerPhones extends React.Component {
 
-    componentDidMount(){
+    componentWillMount(){
         const {
             onFetchPhones,
-            onFetchCategories,
+            // onFetchCategories,
         } = this.props;
         Promise.resolve()
             .then(() => onFetchPhones())
-            .then(() => onFetchCategories());
+            // .then(() => onFetchCategories());
     }
 
     getShortDescription(phone){

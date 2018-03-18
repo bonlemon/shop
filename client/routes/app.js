@@ -7,12 +7,10 @@ import ContainerPhones from '../containers/Phones';
 
 
 const AppRouter = () => (
-    <BrowserRouter>
         <Switch>
             <Route path='/categories/:id' component={ContainerPhones} />
-            <Route exact path='/' component={ContainerPhones} />
+            <Route path='/' component={ContainerPhones} />
         </Switch>
-    </BrowserRouter>
 )
 
 export default AppRouter;
