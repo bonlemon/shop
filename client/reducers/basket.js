@@ -18,6 +18,9 @@ export default function reducer(state = initialState, {type, payload}) {
         case ACTION_TYPES.REMOVE_PHONE_TO_BASKET:
             return state.set('IDs', state.get('IDs').filter(id => id == payload.id))
 
+        case ACTION_TYPES.CLEAN_BASKET:
+            return initialState
+
         default:
             return state
     }

@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import Basket from '../../components/Basket';
 
 import { 
-    removePhoneFromBasket
+    removePhoneFromBasket,
+    basketCheckout,
+    cleanBasket
 } from '../../actions';
 
 import {
@@ -48,6 +50,8 @@ const mapStateToProps = (state, {match}) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onRemovePhoneFromBasket: (id) =>  dispatch(removePhoneFromBasket(id)),
+        onBasketCheckout: () =>  dispatch(basketCheckout()),
+        onCleanBasket: () =>  dispatch(cleanBasket()),
     }
 }
 

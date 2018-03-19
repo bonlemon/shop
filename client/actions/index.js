@@ -265,3 +265,13 @@ export function searchPhone(text){
             }
         });
 }
+
+export function cleanBasket(){
+    return  (dispatch) => dispatch({
+      type: ACTION_TYPES.CLEAN_BASKET
+    })
+}
+
+export function basketCheckout(phones){
+    alert(JSON.stringify(phones))
+}

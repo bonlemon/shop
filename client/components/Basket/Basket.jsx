@@ -6,7 +6,36 @@ import './Basket.scss';
 
 class Basket extends React.Component {
 
-    removePhoneFromBasket
+    renderSidebar = () => (
+        <div>
+            <Link
+                className='btn btn-info'
+                to='/'
+            >
+                <span className='glyphicon glyphicon-info-sign' />
+                <span>Continue shopping!</span>
+            </Link>
+            {
+                R.not(isBasketEmpty) &&
+                <div>
+                    <button
+                        onClick={cleanBasket}
+                        className='btn btn-danger'
+                    >
+                        <span className='glyphicon glyphicon-trash' />
+                        Clear cart
+              </button>
+                    <button
+                        className='btn btn-success'
+                        onClick={() => basketCheckout(phones)}
+                    >
+                        <span className='glyphicon glyphicon-envelope' />
+                        Checkout
+              </button>
+                </div>
+            }
+        </div>
+    )
 
     renderContent = () => {
 
@@ -65,12 +94,7 @@ class Basket extends React.Component {
         )
     }
 
-    renderSidebar = () => (
-        <div>
-            Sidebar
-        </div>
-    )
-
+    
     render() {
         return (
             <div className='view-container' >
