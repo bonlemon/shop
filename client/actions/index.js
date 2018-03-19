@@ -248,7 +248,7 @@ export function addPhoneToBasket(id){
         });
 }
 
-export function removePhoneToBasket(id){
+export function removePhoneFromBasket(id){
     return (dispatch) => dispatch({
             type: ACTION_TYPES.REMOVE_PHONE_TO_BASKET,
             payload: {

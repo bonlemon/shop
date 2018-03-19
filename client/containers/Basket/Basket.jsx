@@ -1,18 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 
-import Phone from '../../components/Phone';
+import Basket from '../../components/Basket';
 
 import { 
-    fetchBasket,
-    // fetchCategories,
-    loadMoreBasket,
-    addPhoneToBasket
+    removePhoneFromBasket
 } from '../../actions';
 
 import {
-    getBasketPhonesWithCount,
+    // getBasketPhonesWithCount,
     getTotalBasketPhones, 
 } from '../../reducers/basket'
 
@@ -21,32 +17,39 @@ import {
 class ContainerBasket extends React.Component {
 
     getTotalPrice(phones) {
-        return phones && phones.length ? phones.reduce((sum, phone) => sum + phone) : 0
+        if (phones && phones.length){
+            return  phones.map(phone=>phone.price).reduce((sum, price) =>  sum + price)
+        } else {
+            return 0
+        }
     }
 
     render (){
-        const {totalPhones} = this.props;
+        const {
+            totalPhones,
+            onRemovePhoneFromBasket
+        } = this.props;
 
-        return  <div>
-                    {totalPhones.map(phone => phone)}
-                    {this.getTotalPrice(totalPhones)}
-                </div>
-
+        return  <Basket
+                    totalPhones={totalPhones}
+                    totalPrice={this.getTotalPrice(totalPhones)}
+                    removePhoneFromBasket={onRemovePhoneFromBasket}
+                /> 
     }   
 }
 
 const mapStateToProps = (state, {match}) => {
     return {
-        phones:         getBasketPhonesWithCount(state),
+        // phones:         getBasketPhonesWithCount(state),
         totalPhones:    getTotalBasketPhones(state)
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // onFetchBasket: () =>  dispatch(fetchBasket()),
+        onRemovePhoneFromBasket: (id) =>  dispatch(removePhoneFromBasket(id)),
     }
 }
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ContainerBasket));
+export default connect(mapStateToProps, mapDispatchToProps)(ContainerBasket);

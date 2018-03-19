@@ -15,8 +15,8 @@ export default function reducer(state = initialState, {type, payload}) {
         case ACTION_TYPES.ADD_PHONE_TO_BASKET:
             return state.setIn(['IDs'], state.getIn(['IDs']).push(payload.id))
 
-        // case ACTION_TYPES.REMOVE_PHONE_TO_BASKET:
-        //     return state.set('IDs', state.get('IDs').concat(payload.phones.map(phone => phone.id)))
+        case ACTION_TYPES.REMOVE_PHONE_TO_BASKET:
+            return state.set('IDs', state.get('IDs').filter(id => id == payload.id))
 
         default:
             return state
@@ -28,7 +28,13 @@ export default function reducer(state = initialState, {type, payload}) {
 export function getTotalBasketCount(state) {
     return state.basket.getIn(['IDs']).toJS().length
 }
+
 export function getTotalBasketPhones(state) {
     return state.basket.getIn(['IDs']).toJS()
-            .map(id => getPhoneById(state, id).price)
+            .map(id => getPhoneById(state, id))
 }
+
+// export function getBasketPhonesWithCount(state) {
+//     console.log("state.basket.get('IDs')", state.basket.get('IDs'))
+//     return getTotalBasketPhones(state).map((phone) => phone.count = state.basket.get('IDs').toJS().filter(id => id == phone.categoryId).length)
+// }

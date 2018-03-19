@@ -12,7 +12,11 @@ import {
 class ContainerBasketCart extends React.Component {
 
     getTotalPrice(phones) {
-        return phones && phones.length ? phones.reduce((sum, phone) => sum + phone) : 0
+        if (phones && phones.length){
+            return  phones.map(phone=>phone.price).reduce((sum, price) =>  sum + price)
+        } else {
+            return 0
+        }
     }
 
     render() {

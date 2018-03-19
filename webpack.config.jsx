@@ -12,6 +12,7 @@ module.exports = {
     },
     resolve: {
         alias: {
+            images: path.resolve(__dirname, './production/images'),
             actions: path.resolve(__dirname, './client/actions'),
             components: path.resolve(__dirname, './client/components'),
             constants: path.resolve(__dirname, './client/constants'),
@@ -31,10 +32,14 @@ module.exports = {
                 loader: 'url-loader?limit=10000&mimetype=image/png'
             },
             {
+                test: /\.gif$/,
+                loader: 'url-loader?limit=10000&mimetype=image/gif'
+            },
+            {
                 test: /\.svg/,
                 loader: 'url-loader?limit=26000&mimetype=image/svg+xml'
             },
-            {
+            {   
                 test: /\.jsx?$/,
                 exclude: /(node_modules)/,
                 loader: "babel-loader",

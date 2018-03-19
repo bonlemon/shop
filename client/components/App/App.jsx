@@ -9,7 +9,6 @@ import './App.scss';
 
 class App extends React.Component {
     render() {
-        console.log('123')
         return (
             <div className="view-container">
                 <div className="container">
