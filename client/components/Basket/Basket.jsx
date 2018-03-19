@@ -6,8 +6,14 @@ import './Basket.scss';
 
 class Basket extends React.Component {
 
-    renderSidebar = () => (
-        <div>
+    renderSidebar = () => {
+        const {
+            totalPhones,
+            cleanBasket,
+            basketCheckout
+        } = this.props;
+
+        return <div>
             <Link
                 className='btn btn-info'
                 to='/'
@@ -16,7 +22,7 @@ class Basket extends React.Component {
                 <span>Continue shopping!</span>
             </Link>
             {
-                R.not(isBasketEmpty) &&
+                totalPhones &&
                 <div>
                     <button
                         onClick={cleanBasket}
@@ -27,7 +33,7 @@ class Basket extends React.Component {
               </button>
                     <button
                         className='btn btn-success'
-                        onClick={() => basketCheckout(phones)}
+                        onClick={() => basketCheckout(totalPhones)}
                     >
                         <span className='glyphicon glyphicon-envelope' />
                         Checkout
@@ -35,7 +41,7 @@ class Basket extends React.Component {
                 </div>
             }
         </div>
-    )
+    }
 
     renderContent = () => {
 

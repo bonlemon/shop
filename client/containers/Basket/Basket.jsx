@@ -29,11 +29,15 @@ class ContainerBasket extends React.Component {
     render (){
         const {
             totalPhones,
+            onCleanBasket,
+            onBasketCheckout,
             onRemovePhoneFromBasket
         } = this.props;
 
         return  <Basket
                     totalPhones={totalPhones}
+                    cleanBasket={onCleanBasket}
+                    basketCheckout={onBasketCheckout}
                     totalPrice={this.getTotalPrice(totalPhones)}
                     removePhoneFromBasket={onRemovePhoneFromBasket}
                 /> 
@@ -50,7 +54,7 @@ const mapStateToProps = (state, {match}) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onRemovePhoneFromBasket: (id) =>  dispatch(removePhoneFromBasket(id)),
-        onBasketCheckout: () =>  dispatch(basketCheckout()),
+        onBasketCheckout: (phones) =>  dispatch(basketCheckout(phones)),
         onCleanBasket: () =>  dispatch(cleanBasket()),
     }
 }
