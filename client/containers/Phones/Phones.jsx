@@ -6,7 +6,7 @@ import Phone from '../../components/Phone';
 
 import { 
     fetchPhones,
-    fetchCategories,
+    // fetchCategories,
     loadMorePhones,
     addPhoneToBasket
 } from '../../actions';
@@ -27,23 +27,35 @@ class ContainerPhones extends React.Component {
             // .then(() => onFetchCategories());
     }
 
+    filterPhones(phones) {
+        const { catId } = this.props.match.params;
+        
+        return catId ? phones.filter(phone => phone.categoryId == catId) : phones
+    }
+
+    renderPhones = (phones) => {
+        const { onAddPhoneToBasket } = this.props;
+        
+        return this.filterPhones(phones).map(
+            (phone, index) => <Phone
+                                key={index}
+                                phone={phone}
+                                shortDescription={this.getShortDescription(phone)}
+                                addPhoneToBasket={onAddPhoneToBasket}
+                                /> 
+            )
+    }
+
     getShortDescription(phone){
         return `${phone.description.slice(0, 50)}...`
     }
 
     render (){
-        const {phones, onLoadMorePhones, onAddPhoneToBasket} = this.props;
+        const {phones, onLoadMorePhones } = this.props;
 
         return  <div>
                     <div className='books row'>
-                        {phones && phones.map(
-                            (phone, index) => <Phone
-                                                key={index}
-                                                phone={phone}
-                                                shortDescription={this.getShortDescription(phone)}
-                                                addPhoneToBasket={onAddPhoneToBasket}
-                                                /> 
-                        )}
+                        {phones && this.renderPhones(phones)}
                     </div>
                     <div className="row">
                         <button
@@ -67,7 +79,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onFetchPhones: () =>  dispatch(fetchPhones()),
-        onFetchCategories: () =>  dispatch(fetchCategories()),
+        // onFetchCategories: () =>  dispatch(fetchCategories()),
         onLoadMorePhones: () =>  dispatch(loadMorePhones()),
         onAddPhoneToBasket: (id) =>  dispatch(addPhoneToBasket(id)),
     }

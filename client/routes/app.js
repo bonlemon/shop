@@ -8,7 +8,7 @@ import ContainerPhones from '../containers/Phones';
 
 const AppRouter = () => (
         <Switch>
-            <Route path='/categories/:id' component={ContainerPhones} />
+            <Route path='/categories/:catId' component={ContainerPhones} />
             <Route path='/' component={ContainerPhones} />
         </Switch>
 )
