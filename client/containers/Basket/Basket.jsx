@@ -14,6 +14,11 @@ import {
     getTotalBasketPhones, 
 } from '../../reducers/basket'
 
+import {
+    // getBasketPhonesWithCount,
+    getTotalBasketPhones, 
+} from '../../reducers/basket'
+
 
 
 class ContainerBasket extends React.Component {

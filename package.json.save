@@ -1,0 +1,20 @@
+{
+  "name": "shop",
+  "version": "1.0.0",
+  "description": "** Заментки ** === Запуск Mongo - sudo service mongodb start Запуск сервера - npm run server Запуск клиент - npm run client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bonlemon/shop.git"
+  },
+  "author": "bonlemon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bonlemon/shop/issues"
+  },
+  "homepage": "https://github.com/bonlemon/shop#readme",
+  
+}
